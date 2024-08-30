@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume_app/screens/Pdf_Screen/pdf_view.dart';
 
 import 'package:resume_app/screens/home/home_screen.dart';
 import 'package:resume_app/screens/home/section/Activities_Pages/activities.dart';
@@ -35,4 +36,5 @@ Map<String,Widget Function(BuildContext context)> routes={
   '/lan':(context)=> LanguagePage(),
   '/ste':(context)=> StrengthPage(),
   '/cert':(context)=> CertificatePage(),
+  '/pdf':(context)=> PdfView(),
 };

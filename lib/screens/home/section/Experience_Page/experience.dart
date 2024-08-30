@@ -14,6 +14,7 @@ class ExperiencePage extends StatefulWidget {
 class _ExperiencePageState extends State<ExperiencePage> {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: bgcolor,
       appBar: AppBar(
@@ -46,7 +47,7 @@ class _ExperiencePageState extends State<ExperiencePage> {
                       decoration: BoxDecoration(
                           border: Border.all(
                             width: 0.5,
-                            color: Colors.black12,
+                            color: Colors.black38,
                           ),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
@@ -107,36 +108,116 @@ class _ExperiencePageState extends State<ExperiencePage> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         defaulttext("Start Date"),
-                                        textfiledudf(
-                                            hint: "dd/mm/yy",
-                                            prefix: Icons.date_range,
-                                            isphone: false,
-                                            isAddress: false,
-                                            txtController: experiencelist[index]['start']),
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() async {
+                                              DateTime? datePicked = await showDatePicker(
+                                                  barrierColor: Colors.black54,
+                                                  context: context,
+                                                  firstDate: DateTime(1900),
+                                                  initialDate: DateTime.now(),
+                                                  lastDate: DateTime.now());
+                                              if (datePicked != null) {
+                                                var birthDate =
+                                                    '${datePicked.day}/${datePicked.month}/${datePicked.year}';;
+                                                experiencelist[index]['start'].text = birthDate;
+                                              }
+                                            });
+                                          },
+                                          child: AbsorbPointer(
+                                            absorbing: true,
+                                            child: TextField(
+
+                                              controller:   experiencelist[index]['start'],
+                                              autofocus: false,
+                                              decoration: InputDecoration(
+                                                  prefixIcon: Icon(
+                                                    Icons.calendar_today,
+                                                    color: Colors.deepPurple,
+                                                  ),
+                                                  border: OutlineInputBorder(),
+                                                  hintText: '05/06/1998',
+                                                  hintStyle: TextStyle(color: Colors.black26),
+                                                  errorBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.circular(12),
+                                                      borderSide: BorderSide(color: Colors.red, width: 2)),
+                                                  focusedBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.circular(12),
+                                                      borderSide: BorderSide(color: Colors.deepPurple, width: 2)),
+                                                  enabledBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.circular(12),
+                                                      borderSide: BorderSide(color: secondary, width: 1))
+
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
-                                  Container(
+                                  (isend==false)? Container(
                                     width: 150,
                                     decoration: BoxDecoration(),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         defaulttext("End Date"),
-                                        textfiledudf(
-                                            hint: "dd/mm/yy",
-                                            prefix: Icons.date_range,
-                                            isphone: false,
-                                            isAddress: false,
-                                            txtController: experiencelist[index]['end']),
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() async {
+                                              DateTime? datePicked = await showDatePicker(
+                                                  barrierColor: Colors.black54,
+                                                  context: context,
+                                                  firstDate: DateTime(1900),
+                                                  initialDate: DateTime.now(),
+                                                  lastDate: DateTime.now());
+                                              if (datePicked != null) {
+                                                var birthDate =
+                                                    '${datePicked.day}/${datePicked.month}/${datePicked.year}';
+                                                experiencelist[index]['end'].text = birthDate;
+                                              }
+                                            });
+                                          },
+                                          child: AbsorbPointer(
+                                            absorbing: true,
+                                            child: TextField(
+
+                                              controller:  experiencelist[index]['end'],
+                                              autofocus: false,
+                                              decoration: InputDecoration(
+                                                  prefixIcon: Icon(
+                                                    Icons.calendar_today,
+                                                    color: Colors.deepPurple,
+                                                  ),
+                                                  border: OutlineInputBorder(),
+                                                  hintText: '08/09/1998',
+                                                  hintStyle: TextStyle(color: Colors.black26),
+                                                  errorBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.circular(12),
+                                                      borderSide: BorderSide(color: Colors.red, width: 2)),
+                                                  focusedBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.circular(12),
+                                                      borderSide: BorderSide(color: Colors.deepPurple, width: 2)),
+                                                  enabledBorder: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.circular(12),
+                                                      borderSide: BorderSide(color: secondary, width: 1))
+
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
-                                  ),
+                                  ):Container()
                                 ],
                               ),
-                              SizedBox(
-                                height: 15,
-                              ),
+
+                  CheckboxListTile(title: Text("Present"),value: isend, onChanged: (value) {
+                    setState(() {
+                      isend=value!;
+                    });
+                  },),
+
                               defaulttext("Details"),
                               textfiledudf(
                                   hint: "Job description",
@@ -151,7 +232,9 @@ class _ExperiencePageState extends State<ExperiencePage> {
                       ),
                     ),
                   ),
-                )
+                ),
+                Container(height: 100,),
+                SizedBox(height: 30,)
               ],
             ),
           ),
@@ -188,27 +271,36 @@ class _ExperiencePageState extends State<ExperiencePage> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 50,
-                width: double.infinity,
-                margin: EdgeInsets.only(left: 10, right: 10),
-                decoration: BoxDecoration(
-                    color: buttoncolor,
-                    borderRadius: BorderRadius.circular(12)),
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
+              GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+
+                        behavior: SnackBarBehavior.floating,
+                        content: Text(
+                          'Data Saved Successfully!',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    );
+                  },child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 10, right: 10,bottom: 10),
+                  decoration: BoxDecoration(
+                      color: buttoncolor,
+                      borderRadius: BorderRadius.circular(12)),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
                         "Save",
                         style: TextStyle(color: Offwhite, fontSize: 20),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -17,7 +17,7 @@ class PersonalPage extends StatefulWidget {
 }
 
 class _PersonalPageState extends State<PersonalPage> {
-  GlobalKey<FormState> fromkey=GlobalKey<FormState>();
+  GlobalKey<FormState> fromkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +39,20 @@ class _PersonalPageState extends State<PersonalPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 20,left: 8,right: 8,bottom: 8),
+        padding: const EdgeInsets.only(top: 20, left: 8, right: 8, bottom: 8),
         child: SingleChildScrollView(
           child: Form(
             key: fromkey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-
               children: [
-                defaulttext("Photo (Optional)"),
+                defaulttext("Photo "),
                 GestureDetector(
-                  onTap: () async{
-                    XFile? image = await imagePicker.pickImage(source: ImageSource.gallery);
+                  onTap: () async {
+                    XFile? image = await imagePicker.pickImage(
+                        source: ImageSource.gallery);
                     setState(() {
-                      imagefile=File(image!.path);
+                      imagefile = File(image!.path);
                     });
                   },
                   child: Align(
@@ -60,9 +60,10 @@ class _PersonalPageState extends State<PersonalPage> {
                     child: CircleAvatar(
                       radius: 70,
                       backgroundColor: buttoncolor,
-                      backgroundImage: imagefile!=null?FileImage(imagefile!):null,
+                      backgroundImage:
+                          imagefile != null ? FileImage(imagefile!) : null,
                       child: Icon(
-                        (imagefile!=null)?null:Icons.person,
+                        (imagefile != null) ? null : Icons.person,
                         color: Offwhite,
                         size: 100,
                       ),
@@ -77,11 +78,13 @@ class _PersonalPageState extends State<PersonalPage> {
                   children: [
                     ElevatedButton(
                         style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(buttoncolor)),
-                        onPressed: () async{
-                          XFile?img=await imagePicker.pickImage(source: ImageSource.gallery);
+                            backgroundColor:
+                                WidgetStatePropertyAll(buttoncolor)),
+                        onPressed: () async {
+                          XFile? img = await imagePicker.pickImage(
+                              source: ImageSource.gallery);
                           setState(() {
-                            imagefile=File(img!.path);
+                            imagefile = File(img!.path);
                           });
                         },
                         child: Text(
@@ -93,10 +96,11 @@ class _PersonalPageState extends State<PersonalPage> {
                     ),
                     ElevatedButton(
                         style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(buttoncolor)),
+                            backgroundColor:
+                                WidgetStatePropertyAll(buttoncolor)),
                         onPressed: () {
                           setState(() {
-                            imagefile=null;
+                            imagefile = null;
                           });
                         },
                         child: Text(
@@ -138,6 +142,54 @@ class _PersonalPageState extends State<PersonalPage> {
                 SizedBox(
                   height: 15,
                 ),
+                defaulttext("DOB"),
+                GestureDetector(
+                  onTap: () {
+                    setState(() async {
+                      DateTime? datePicked = await showDatePicker(
+                          barrierColor: Colors.black54,
+                          context: context,
+                          firstDate: DateTime(1900),
+                          initialDate: DateTime.now(),
+                          lastDate: DateTime.now());
+                      if (datePicked != null) {
+                       var birthDate =
+                        '${datePicked.day}/${datePicked.month}/${datePicked.year}';
+                        txtDob.text = birthDate;
+                      }
+                    });
+                  },
+                  child: AbsorbPointer(
+                    absorbing: true,
+                    child: TextField(
+
+                      controller: txtDob,
+                      autofocus: false,
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.calendar_today,
+                            color: Colors.deepPurple,
+                          ),
+                          border: OutlineInputBorder(),
+                        hintText: 'ex: 03-06-1998',
+                          hintStyle: TextStyle(color: Colors.black26),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Colors.red, width: 2)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Colors.deepPurple, width: 2)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: secondary, width: 1))
+
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
                 defaulttext("Address"),
                 textfiledudf(
                     hint: 'A/204 Los angaloes,newyok',
@@ -159,7 +211,6 @@ class _PersonalPageState extends State<PersonalPage> {
                   height: 15,
                 ),
                 defaulttext("Gender"),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -168,28 +219,32 @@ class _PersonalPageState extends State<PersonalPage> {
                       groupValue: gender,
                       onChanged: (value) {
                         setState(() {
-                          gender=value!;
+                          gender = value!;
                         });
-                      },),
-                    Text("Male",style: TextStyle(fontSize: 15),),
+                      },
+                    ),
+                    Text(
+                      "Male",
+                      style: TextStyle(fontSize: 15),
+                    ),
                     Radio(
                         value: 'Female',
                         groupValue: gender,
                         onChanged: (value) {
                           setState(() {
-                            gender=value!;
+                            gender = value!;
                           });
                         }),
-                    Text("Female",style: TextStyle(fontSize: 15)),
+                    Text("Female", style: TextStyle(fontSize: 15)),
                     Radio(
                         value: 'Other',
                         groupValue: gender,
                         onChanged: (value) {
                           setState(() {
-                            gender=value!;
+                            gender = value!;
                           });
                         }),
-                    Text("Other",style: TextStyle(fontSize: 15)),
+                    Text("Other", style: TextStyle(fontSize: 15)),
                   ],
                 ),
                 SizedBox(
@@ -207,28 +262,36 @@ class _PersonalPageState extends State<PersonalPage> {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 50,
-        width: double.infinity,
-        margin: EdgeInsets.all(15),
-        decoration: BoxDecoration(
-            color: buttoncolor, borderRadius: BorderRadius.circular(12)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(onTap: () {
-              if(fromkey.currentState!.validate())
-              {
-                Navigator.of(context).pop();
-              }
+      bottomNavigationBar: GestureDetector(
+        onTap: () {
+          if (fromkey.currentState!.validate() && imagefile != null) {
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
 
-            },
-              child: Text(
+                behavior: SnackBarBehavior.floating,
+                content: Text(
+                  'Data Saved Successfully!',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            );
+          }
+        },child: Container(
+          height: 50,
+          width: double.infinity,
+          margin: EdgeInsets.all(15),
+          decoration: BoxDecoration(
+              color: buttoncolor, borderRadius: BorderRadius.circular(12)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
                 "Save",
                 style: TextStyle(color: Offwhite, fontSize: 20),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

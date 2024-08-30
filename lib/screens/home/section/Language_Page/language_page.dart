@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:resume_app/utils/global.dart';
 
 import '../../../../utils/color.dart';
+import '../component/text_box.dart';
 class LanguagePage extends StatefulWidget {
   const LanguagePage({super.key});
 
@@ -35,7 +37,7 @@ class _LanguagePageState extends State<LanguagePage> {
             child: Column(
               children: [
                 ...List.generate(
-                  skilllist.length,
+                  languagelist.length,
                       (index) => Padding(
                     padding:
                     const EdgeInsets.only(left: 10, right: 10, top: 10),
@@ -43,7 +45,7 @@ class _LanguagePageState extends State<LanguagePage> {
                       decoration: BoxDecoration(
                           border: Border.all(
                             width: 0.5,
-                            color: Colors.black12,
+                            color: Colors.black38,
                           ),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
@@ -58,12 +60,12 @@ class _LanguagePageState extends State<LanguagePage> {
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ndefaulttext("Skills ${index + 1}"),
+                                  ndefaulttext("Language ${index + 1}"),
                                   IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          if (skilllist.length > 1) {
-                                            skilllist.removeAt(index);
+                                          if (languagelist.length > 1) {
+                                            languagelist.removeAt(index);
                                           }
                                         });
                                       },
@@ -75,30 +77,18 @@ class _LanguagePageState extends State<LanguagePage> {
                               ),
                             ),
                             textfiledudf(
-                                hint: "Communication",
-                                prefix: Icons.workspace_premium,
+                                hint: "English",
+                                prefix: Icons.language,
                                 isphone: false,
                                 isAddress: false,
                                 txtController: skilllist[index]),
                             SizedBox(height: 15,),
-                            Slider(
-                              activeColor: Colors.deepPurple,
-                              inactiveColor: Colors.purple,
-                              max: 5,
-                              label: SliderRange[index].toInt().toString(),
-                              divisions: 5,
-                              value: SliderRange[index],
-                              onChanged: (double value){
-                                setState(() {
-                                  SliderRange[index] = value;
-                                });
-                              },
-                            ),
                           ],),
                       ),
                     ),
                   ),
-                )
+                ),Container(height: 100,),
+                SizedBox(height: 30,)
               ],
             ),
           ),
@@ -117,10 +107,8 @@ class _LanguagePageState extends State<LanguagePage> {
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      TextEditingController skillli=TextEditingController();
-                      skilllist.add(skillli);
-                      double slide=0;
-                      SliderRange.add(slide.toDouble());
+                      TextEditingController txtlanguage=TextEditingController();
+                      languagelist.add(txtlanguage);
                     });
                   },
                   child: Text(
@@ -132,27 +120,36 @@ class _LanguagePageState extends State<LanguagePage> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 50,
-                width: double.infinity,
-                margin: EdgeInsets.only(left: 10, right: 10),
-                decoration: BoxDecoration(
-                    color: buttoncolor,
-                    borderRadius: BorderRadius.circular(12)),
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+
+                      behavior: SnackBarBehavior.floating,
+                      content: Text(
+                        'Data Saved Successfully!',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  );
+                },child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 10, right: 10,bottom:10 ),
+                  decoration: BoxDecoration(
+                      color: buttoncolor,
+                      borderRadius: BorderRadius.circular(12)),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
                         "Save",
                         style: TextStyle(color: Offwhite, fontSize: 20),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

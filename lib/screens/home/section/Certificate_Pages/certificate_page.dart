@@ -46,7 +46,7 @@ class _CertificatePageState extends State<CertificatePage> {
                       decoration: BoxDecoration(
                           border: Border.all(
                             width: 0.5,
-                            color: Colors.black12,
+                            color: Colors.black38,
                           ),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
@@ -82,20 +82,21 @@ class _CertificatePageState extends State<CertificatePage> {
                                 prefix: Icons.credit_card_outlined,
                                 isphone: false,
                                 isAddress: false,
-                                txtController: certificatelist[index]),
+                                txtController: certificatelist[index]['name']),
                             SizedBox(height: 15,),
                             textfiledudf(
                                 hint: "Description",
                                 prefix: Icons.description,
                                 isphone: false,
                                 isAddress: true,
-                                txtController: certificatelist[index]),
+                                txtController: certificatelist[index]['description']),
                             SizedBox(height: 15,),
                           ],),
                       ),
                     ),
                   ),
-                )
+                ),Container(height: 100,),
+                SizedBox(height: 30,)
               ],
             ),
           ),
@@ -129,27 +130,37 @@ class _CertificatePageState extends State<CertificatePage> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 50,
-                width: double.infinity,
-                margin: EdgeInsets.only(left: 10, right: 10),
-                decoration: BoxDecoration(
-                    color: buttoncolor,
-                    borderRadius: BorderRadius.circular(12)),
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+
+                      behavior: SnackBarBehavior.floating,
+                      content: Text(
+                        'Data Saved Successfully!',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 10, right: 10,bottom: 10),
+                  decoration: BoxDecoration(
+                      color: buttoncolor,
+                      borderRadius: BorderRadius.circular(12)),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
                         "Save",
                         style: TextStyle(color: Offwhite, fontSize: 20),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -44,8 +44,8 @@ class _ActivitiesState extends State<Activities> {
                     child: Container(
                       decoration: BoxDecoration(
                           border: Border.all(
-                            width: 0.5,
-                            color: Colors.black12,
+                              width: 0.5,
+                              color: Colors.black38,
                           ),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
@@ -87,7 +87,9 @@ class _ActivitiesState extends State<Activities> {
                       ),
                     ),
                   ),
-                )
+                ),
+                Container(height: 100,),
+                SizedBox(height: 30,)
               ],
             ),
           ),
@@ -119,27 +121,37 @@ class _ActivitiesState extends State<Activities> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 50,
-                width: double.infinity,
-                margin: EdgeInsets.only(left: 10, right: 10),
-                decoration: BoxDecoration(
-                    color: buttoncolor,
-                    borderRadius: BorderRadius.circular(12)),
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+
+                      behavior: SnackBarBehavior.floating,
+                      content: Text(
+                        'Data Saved Successfully!',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  );
+
+                },child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 10, right: 10,bottom: 10),
+                  decoration: BoxDecoration(
+                      color: buttoncolor,
+                      borderRadius: BorderRadius.circular(12)),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
                         "Save",
                         style: TextStyle(color: Offwhite, fontSize: 20),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

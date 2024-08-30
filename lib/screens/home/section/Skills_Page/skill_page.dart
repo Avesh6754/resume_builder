@@ -46,7 +46,7 @@ class _SkillsPageState extends State<SkillsPage> {
                       decoration: BoxDecoration(
                           border: Border.all(
                             width: 0.5,
-                            color: Colors.black12,
+                            color: Colors.black38,
                           ),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
@@ -84,12 +84,13 @@ class _SkillsPageState extends State<SkillsPage> {
                                 isAddress: false,
                                 txtController: skilllist[index]),
                             SizedBox(height: 15,),
+                            Text("Level ${SliderRange[index].toInt().toString()}",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
                             Slider(
                               activeColor: Colors.deepPurple,
-                              inactiveColor: Colors.purple,
-                              max: 5,
+                              inactiveColor: Colors.purple.shade100,
+                              max: 100,
                               label: SliderRange[index].toInt().toString(),
-                              divisions: 5,
+                              divisions: 100,
                               value: SliderRange[index],
                               onChanged: (double value){
                                 setState(() {
@@ -101,7 +102,9 @@ class _SkillsPageState extends State<SkillsPage> {
                       ),
                     ),
                   ),
-                )
+                ),
+                Container(height: 100,),
+                SizedBox(height: 30,)
               ],
             ),
           ),
@@ -135,27 +138,40 @@ class _SkillsPageState extends State<SkillsPage> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 50,
-                width: double.infinity,
-                margin: EdgeInsets.only(left: 10, right: 10),
-                decoration: BoxDecoration(
-                    color: buttoncolor,
-                    borderRadius: BorderRadius.circular(12)),
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        "Save",
-                        style: TextStyle(color: Offwhite, fontSize: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+
+                      behavior: SnackBarBehavior.floating,
+                      content: Text(
+                        'Data Saved Successfully!',
+                        style: TextStyle(fontSize: 16),
                       ),
-                    )
-                  ],
+                    ),
+                  );
+                },
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 10, right: 10,bottom: 10),
+                  decoration: BoxDecoration(
+                      color: buttoncolor,
+                      borderRadius: BorderRadius.circular(12)),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+
+                        child: Text(
+                          "Save",
+                          style: TextStyle(color: Offwhite, fontSize: 20),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

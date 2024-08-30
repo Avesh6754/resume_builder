@@ -41,7 +41,8 @@ class _ReferencePageState extends State<ReferencePage> {
                   padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(width: 0.5,color:Colors.black12,),borderRadius:BorderRadius.circular(15)
+                        border: Border.all( width: 0.5,
+                          color: Colors.black38,),borderRadius:BorderRadius.circular(15)
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(top: 2,left: 5,right: 5),
@@ -87,7 +88,9 @@ class _ReferencePageState extends State<ReferencePage> {
                       ),
                     ),
                   ),
-                ),)
+                ),),
+                Container(height: 100,),
+                SizedBox(height: 30,)
 
               ],
             ),
@@ -121,27 +124,37 @@ class _ReferencePageState extends State<ReferencePage> {
                 ),
               ),
               SizedBox(height: 10,),
-              Container(
-                height: 50,
-                width: double.infinity,
-                margin: EdgeInsets.only(left: 10,right: 10),
-                decoration: BoxDecoration(
-                    color: buttoncolor, borderRadius: BorderRadius.circular(12)),
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(onTap: () {
+              GestureDetector(
+                onTap: () {
 
-                      Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
 
-                    },
-                      child: Text(
+                      behavior: SnackBarBehavior.floating,
+                      content: Text(
+                        'Data Saved Successfully!',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  );
+
+                },child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 10,right: 10,bottom: 10),
+                  decoration: BoxDecoration(
+                      color: buttoncolor, borderRadius: BorderRadius.circular(12)),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
                         "Save",
                         style: TextStyle(color: Offwhite, fontSize: 20),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

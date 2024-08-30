@@ -41,7 +41,7 @@ class _AddInfoState extends State<AddInfo> {
                     decoration: BoxDecoration(
                         border: Border.all(
                           width: 0.5,
-                          color: Colors.black12,
+                          color: Colors.black38,
                         ),
                         borderRadius: BorderRadius.circular(15)),
                     child: Padding(
@@ -74,18 +74,27 @@ class _AddInfoState extends State<AddInfo> {
           SizedBox(
             height: 10,
           ),
-          Container(
-            height: 50,
-            width: double.infinity,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            decoration: BoxDecoration(
-                color: buttoncolor,
-                borderRadius: BorderRadius.circular(12)),
-            alignment: Alignment.center,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+
+                  behavior: SnackBarBehavior.floating,
+                  content: Text(
+                    'Data Saved Successfully!',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              );
+            },child: Container(
+              height: 50,
+              width: double.infinity,
+              margin: EdgeInsets.only(left: 10, right: 10),
+              decoration: BoxDecoration(
+                  color: buttoncolor,
+                  borderRadius: BorderRadius.circular(12)),
+              alignment: Alignment.center,
               child: Text(
                 "Save",
                 style: TextStyle(color: Offwhite, fontSize: 20),

@@ -32,6 +32,7 @@ TextEditingController txtdesignation=TextEditingController();
 TextEditingController txtemail=TextEditingController();
 TextEditingController txtphone=TextEditingController();
 TextEditingController txtaddress=TextEditingController();
+TextEditingController txtDob=TextEditingController();
 TextEditingController txtindian=TextEditingController();
 
 String gender='Male';
@@ -67,6 +68,7 @@ List experiencelist=[{ 'company': TextEditingController(),
   'start': TextEditingController(),
   'end': TextEditingController(),
   'detail':TextEditingController(),}];
+bool isend=false;
 
 //Skill
 List skilllist=[
@@ -135,6 +137,13 @@ TextEditingController txtcertificatedescriptio=TextEditingController();
 
 //language
 
-List languagelist=[txtactivitiename];
+List languagelist=[txtlanguagename];
 
 TextEditingController txtlanguagename=TextEditingController();
+
+List strengthlist=[txtstrengthname];
+
+TextEditingController txtstrengthname=TextEditingController();
+
+
+
