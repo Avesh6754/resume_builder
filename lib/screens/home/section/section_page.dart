@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:resume_app/utils/color.dart';
 import 'package:resume_app/utils/global.dart';
 
+import 'Personal/personal.dart';
+
 class SectionPage extends StatefulWidget {
   const SectionPage({super.key});
 
@@ -211,10 +213,10 @@ class _SectionPageState extends State<SectionPage> {
                 color: buttoncolor, borderRadius: BorderRadius.circular(12)),
             child: InkWell(
               onTap: () {
-                if (txtname != null &&
-                    txtemail != null &&
-                    txtphone != null &&
-                    txtaddress != null &&
+                if (profilelist[0]['name'] != null &&
+                    profilelist[0]['email'] != null &&
+                    profilelist[0]['phone'] != null &&
+                    profilelist[0]['address'] != null &&
                     imagefile != null) {
                   Navigator.of(context).pushNamed('/pdf');
                 } else {

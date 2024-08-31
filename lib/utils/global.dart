@@ -27,13 +27,25 @@ PageController pageController=PageController();
 
 int currentpage=0;
 
-TextEditingController txtname=TextEditingController();
-TextEditingController txtdesignation=TextEditingController();
-TextEditingController txtemail=TextEditingController();
-TextEditingController txtphone=TextEditingController();
-TextEditingController txtaddress=TextEditingController();
-TextEditingController txtDob=TextEditingController();
-TextEditingController txtindian=TextEditingController();
+// TextEditingController txtname=TextEditingController();
+// TextEditingController txtdesignation=TextEditingController();
+// TextEditingController txtemail=TextEditingController();
+// TextEditingController txtphone=TextEditingController();
+// TextEditingController txtaddress=TextEditingController();
+// TextEditingController txtDob=TextEditingController();
+// TextEditingController txtindian=TextEditingController();
+
+List profilelist=[
+  {
+    'name':TextEditingController(),
+    'job':TextEditingController(),
+    'email':TextEditingController(),
+    'phone':TextEditingController(),
+    'address':TextEditingController(),
+    'indian':TextEditingController(),
+    'dob':TextEditingController(),
+  }
+];
 
 String gender='Male';
 

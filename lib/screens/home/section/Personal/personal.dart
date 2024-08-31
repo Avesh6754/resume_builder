@@ -9,6 +9,7 @@ import '../../../../utils/color.dart';
 
 import '../component/text_box.dart';
 
+
 class PersonalPage extends StatefulWidget {
   const PersonalPage({super.key});
 
@@ -44,219 +45,9 @@ class _PersonalPageState extends State<PersonalPage> {
           child: Form(
             key: fromkey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                defaulttext("Photo "),
-                GestureDetector(
-                  onTap: () async {
-                    XFile? image = await imagePicker.pickImage(
-                        source: ImageSource.gallery);
-                    setState(() {
-                      imagefile = File(image!.path);
-                    });
-                  },
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: CircleAvatar(
-                      radius: 70,
-                      backgroundColor: buttoncolor,
-                      backgroundImage:
-                          imagefile != null ? FileImage(imagefile!) : null,
-                      child: Icon(
-                        (imagefile != null) ? null : Icons.person,
-                        color: Offwhite,
-                        size: 100,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(buttoncolor)),
-                        onPressed: () async {
-                          XFile? img = await imagePicker.pickImage(
-                              source: ImageSource.gallery);
-                          setState(() {
-                            imagefile = File(img!.path);
-                          });
-                        },
-                        child: Text(
-                          "Change",
-                          style: TextStyle(color: Offwhite),
-                        )),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(buttoncolor)),
-                        onPressed: () {
-                          setState(() {
-                            imagefile = null;
-                          });
-                        },
-                        child: Text(
-                          "Remove",
-                          style: TextStyle(color: Offwhite),
-                        )),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                defaulttext("Name"),
-                textfiledudf(
-                    hint: 'Jhone Mark',
-                    isAddress: false,
-                    isphone: false,
-                    prefix: Icons.person,
-                    txtController: txtname),
-                SizedBox(
-                  height: 15,
-                ),
-                defaulttext("Designation"),
-                textfiledudf(
-                    hint: 'Project Manager',
-                    isAddress: false,
-                    isphone: false,
-                    prefix: Icons.work,
-                    txtController: txtdesignation),
-                SizedBox(
-                  height: 15,
-                ),
-                defaulttext("Email"),
-                textfiledudf(
-                    hint: 'Jhonemark@gamil.com',
-                    isAddress: false,
-                    isphone: false,
-                    prefix: Icons.mail,
-                    txtController: txtemail),
-                SizedBox(
-                  height: 15,
-                ),
-                defaulttext("DOB"),
-                GestureDetector(
-                  onTap: () {
-                    setState(() async {
-                      DateTime? datePicked = await showDatePicker(
-                          barrierColor: Colors.black54,
-                          context: context,
-                          firstDate: DateTime(1900),
-                          initialDate: DateTime.now(),
-                          lastDate: DateTime.now());
-                      if (datePicked != null) {
-                       var birthDate =
-                        '${datePicked.day}/${datePicked.month}/${datePicked.year}';
-                        txtDob.text = birthDate;
-                      }
-                    });
-                  },
-                  child: AbsorbPointer(
-                    absorbing: true,
-                    child: TextField(
+                ...List.generate(profilelist.length,(index)=>profilebox(context,index),)
 
-                      controller: txtDob,
-                      autofocus: false,
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.calendar_today,
-                            color: Colors.deepPurple,
-                          ),
-                          border: OutlineInputBorder(),
-                        hintText: 'ex: 03-06-1998',
-                          hintStyle: TextStyle(color: Colors.black26),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.red, width: 2)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.deepPurple, width: 2)),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: secondary, width: 1))
-
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                defaulttext("Address"),
-                textfiledudf(
-                    hint: 'A/204 Los angaloes,newyok',
-                    isAddress: true,
-                    isphone: false,
-                    prefix: Icons.location_on_sharp,
-                    txtController: txtaddress),
-                SizedBox(
-                  height: 15,
-                ),
-                defaulttext("Phone"),
-                textfiledudf(
-                    hint: '8090215569',
-                    isAddress: false,
-                    isphone: true,
-                    prefix: Icons.phone,
-                    txtController: txtphone),
-                SizedBox(
-                  height: 15,
-                ),
-                defaulttext("Gender"),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Radio(
-                      value: 'Male',
-                      groupValue: gender,
-                      onChanged: (value) {
-                        setState(() {
-                          gender = value!;
-                        });
-                      },
-                    ),
-                    Text(
-                      "Male",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Radio(
-                        value: 'Female',
-                        groupValue: gender,
-                        onChanged: (value) {
-                          setState(() {
-                            gender = value!;
-                          });
-                        }),
-                    Text("Female", style: TextStyle(fontSize: 15)),
-                    Radio(
-                        value: 'Other',
-                        groupValue: gender,
-                        onChanged: (value) {
-                          setState(() {
-                            gender = value!;
-                          });
-                        }),
-                    Text("Other", style: TextStyle(fontSize: 15)),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                defaulttext("Nationality"),
-                textfiledudf(
-                    hint: 'Indian',
-                    isAddress: false,
-                    isphone: false,
-                    prefix: Icons.flag,
-                    txtController: txtindian),
               ],
             ),
           ),
@@ -295,5 +86,224 @@ class _PersonalPageState extends State<PersonalPage> {
         ),
       ),
     );
+  }
+
+  Column profilebox(BuildContext context,var index) {
+    return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  defaulttext("Photo "),
+                  GestureDetector(
+                    onTap: () async {
+                      XFile? image = await imagePicker.pickImage(
+                          source: ImageSource.gallery);
+                      setState(() {
+                        imagefile = File(image!.path);
+                      });
+                    },
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: CircleAvatar(
+                        radius: 70,
+                        backgroundColor: buttoncolor,
+                        backgroundImage:
+                            imagefile != null ? FileImage(imagefile!) : null,
+                        child: Icon(
+                          (imagefile != null) ? null : Icons.person,
+                          color: Offwhite,
+                          size: 100,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  WidgetStatePropertyAll(buttoncolor)),
+                          onPressed: () async {
+                            XFile? img = await imagePicker.pickImage(
+                                source: ImageSource.gallery);
+                            setState(() {
+                              imagefile = File(img!.path);
+                            });
+                          },
+                          child: Text(
+                            "Change",
+                            style: TextStyle(color: Offwhite),
+                          )),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  WidgetStatePropertyAll(buttoncolor)),
+                          onPressed: () {
+                            setState(() {
+                              imagefile = null;
+                            });
+                          },
+                          child: Text(
+                            "Remove",
+                            style: TextStyle(color: Offwhite),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  defaulttext("Name"),
+                  textfiledudf(
+                      hint: 'Jhone Mark',
+                      isAddress: false,
+                      isphone: false,
+                      prefix: Icons.person,
+                      txtController: profilelist[index]['name']),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  defaulttext("Designation"),
+                  textfiledudf(
+                      hint: 'Project Manager',
+                      isAddress: false,
+                      isphone: false,
+                      prefix: Icons.work,
+                      txtController: profilelist[index]['job']),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  defaulttext("Email"),
+                  textfiledudf(
+                      hint: 'Jhonemark@gamil.com',
+                      isAddress: false,
+                      isphone: false,
+                      prefix: Icons.mail,
+                      txtController: profilelist[index]['email']),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  defaulttext("DOB"),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() async {
+                        DateTime? datePicked = await showDatePicker(
+                            barrierColor: Colors.black54,
+                            context: context,
+                            firstDate: DateTime(1900),
+                            initialDate: DateTime.now(),
+                            lastDate: DateTime.now());
+                        if (datePicked != null) {
+                         var birthDate =
+                          '${datePicked.day}/${datePicked.month}/${datePicked.year}';
+                         profilelist[index]['dob'].text = birthDate;
+                        }
+                      });
+                    },
+                    child: AbsorbPointer(
+                      absorbing: true,
+                      child: TextField(
+
+                        controller: profilelist[index]['dob'],
+                        autofocus: false,
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.calendar_today,
+                              color: Colors.deepPurple,
+                            ),
+                            border: OutlineInputBorder(),
+                          hintText: 'ex: 03-06-1998',
+                            hintStyle: TextStyle(color: Colors.black26),
+                            errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: Colors.red, width: 2)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: Colors.deepPurple, width: 2)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: secondary, width: 1))
+
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  defaulttext("Address"),
+                  textfiledudf(
+                      hint: 'A/204 Los angaloes,newyok',
+                      isAddress: true,
+                      isphone: false,
+                      prefix: Icons.location_on_sharp,
+                      txtController: profilelist[index]['address']),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  defaulttext("Phone"),
+                  textfiledudf(
+                      hint: '8090215569',
+                      isAddress: false,
+                      isphone: true,
+                      prefix: Icons.phone,
+                      txtController: profilelist[index]['phone']),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  defaulttext("Gender"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Radio(
+                        value: 'Male',
+                        groupValue: gender,
+                        onChanged: (value) {
+                          setState(() {
+                            gender = value!;
+                          });
+                        },
+                      ),
+                      Text(
+                        "Male",
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      Radio(
+                          value: 'Female',
+                          groupValue: gender,
+                          onChanged: (value) {
+                            setState(() {
+                              gender = value!;
+                            });
+                          }),
+                      Text("Female", style: TextStyle(fontSize: 15)),
+                      Radio(
+                          value: 'Other',
+                          groupValue: gender,
+                          onChanged: (value) {
+                            setState(() {
+                              gender = value!;
+                            });
+                          }),
+                      Text("Other", style: TextStyle(fontSize: 15)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  defaulttext("Nationality"),
+                  textfiledudf(
+                      hint: 'Indian',
+                      isAddress: false,
+                      isphone: false,
+                      prefix: Icons.flag,
+                      txtController: profilelist[index]['indian']),
+                ],
+              );
   }
 }
