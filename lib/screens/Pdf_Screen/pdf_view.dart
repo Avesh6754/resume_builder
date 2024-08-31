@@ -7,7 +7,6 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:resume_app/utils/color.dart';
 import '../../utils/global.dart';
 
-
 class PdfView extends StatefulWidget {
   const PdfView({super.key});
 
@@ -34,12 +33,61 @@ Future<Uint8List> pdfGenerator() {
     margin: pw.EdgeInsets.zero,
     pageFormat: PdfPageFormat.a4,
     build: (context) {
-      return pw.Stack(children: [
-        pw.Container(
+      return pw.Row(children: [
+        pw.Expanded(
+          child: pw.Container(
+            color: pdfblack,
+            child: pw.Column(
+              children: [
+                pw.SizedBox(height: 20),
+                pw.Container(
+                  height: 150,
+                  width: 150,
+                  margin: pw.EdgeInsets.all(10),
+                  decoration: pw.BoxDecoration(
+                    border: pw.Border.all(color: pdforange, width: 0.3),
+                    image: pw.DecorationImage(
+                      image: pw.MemoryImage(
+                        imagefile!.readAsBytesSync(),
+                      ),
+                    ),
+                  ),
+                ),
+                pw.SizedBox(height: 20),
+                txtpdf(name: "Contact Me"),
+                txtpdf(name: "Skills"),
+                txtpdf(name: "Languages"),
 
-        )
+              ],
+            ),
+          ),
+        ),
+        pw.Expanded(
+          flex: 2,
+          child: pw.Container(color: pdfwhite),
+        ),
       ]);
     },
   ));
   return pdf.save();
+}
+
+pw.Container txtpdf({required String name})
+{
+  return pw.Container(
+    height: 35,
+    width: 150,
+
+    alignment: pw.Alignment.center,
+    decoration: pw.BoxDecoration(
+      border: pw.Border.all(color: pdforange, width: 0.5),
+    ),
+    child: pw.Text(
+      "$name",
+      style: pw.TextStyle(
+          color: pdfwhite,
+          fontSize: 15,
+          fontWeight: pw.FontWeight.normal),
+    ),
+  );
 }
