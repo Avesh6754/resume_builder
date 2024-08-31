@@ -239,7 +239,7 @@ class _SectionPageState extends State<SectionPage> {
                                 backgroundColor:
                                     WidgetStatePropertyAll(buttoncolor)),
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/personal');
+                              Navigator.of(context).pop();
                             },
                             child: Text(
                               "Fill Missing Details",
