@@ -11,6 +11,7 @@ class _Screen1State extends State<Screen1> {
   Widget build(BuildContext context) {
     return Column(
 
+
       children: [
         Image.asset('assets/image/reume2.png'),
         Text('In short time',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w500),),
