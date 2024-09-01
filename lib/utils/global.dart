@@ -140,12 +140,12 @@ TextEditingController txtaddinfo=TextEditingController();
 List certificatelist=[
   {
     'name':TextEditingController(),
-    'description':TextEditingController(),
+
   }
 ];
 
 TextEditingController txtcertificatename=TextEditingController();
-TextEditingController txtcertificatedescriptio=TextEditingController();
+
 
 //language
 

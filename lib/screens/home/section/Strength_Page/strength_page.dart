@@ -81,7 +81,7 @@ class _StrengthPageState extends State<StrengthPage> {
                                 prefix: Icons.center_focus_strong,
                                 isphone: false,
                                 isAddress: false,
-                                txtController: skilllist[index]),
+                                txtController: strengthlist[index]),
                             SizedBox(height: 15,),
                           ],),
                       ),

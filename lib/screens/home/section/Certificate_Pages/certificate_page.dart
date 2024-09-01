@@ -84,13 +84,6 @@ class _CertificatePageState extends State<CertificatePage> {
                                 isAddress: false,
                                 txtController: certificatelist[index]['name']),
                             SizedBox(height: 15,),
-                            textfiledudf(
-                                hint: "Description",
-                                prefix: Icons.description,
-                                isphone: false,
-                                isAddress: true,
-                                txtController: certificatelist[index]['description']),
-                            SizedBox(height: 15,),
                           ],),
                       ),
                     ),
@@ -117,7 +110,6 @@ class _CertificatePageState extends State<CertificatePage> {
                     setState(() {
                       certificatelist.add({
                         'name':TextEditingController(),
-                        'description':TextEditingController(),
                       });
                     });
                   },

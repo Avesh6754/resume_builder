@@ -81,7 +81,7 @@ class _LanguagePageState extends State<LanguagePage> {
                                 prefix: Icons.language,
                                 isphone: false,
                                 isAddress: false,
-                                txtController: skilllist[index]),
+                                txtController: languagelist[index]),
                             SizedBox(height: 15,),
                           ],),
                       ),
