@@ -40,6 +40,7 @@ dependencies:
   pdf: ^3.11.1
   printing: ^5.13.2
   calendar_date_picker2: ^1.1.6
+  smooth_page_indicator:
 
 dev_dependencies:
   flutter_test:

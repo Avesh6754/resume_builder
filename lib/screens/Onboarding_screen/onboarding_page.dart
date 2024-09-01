@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:resume_app/screens/Onboarding_screen/component/screen1.dart';
+import 'package:resume_app/screens/Onboarding_screen/component/screen2.dart';
+import 'package:resume_app/screens/Onboarding_screen/component/screen3.dart';
 import 'package:resume_app/utils/color.dart';
 import 'package:resume_app/utils/global.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../utils/global.dart';
 
@@ -13,86 +17,53 @@ class OnbordingPage extends StatefulWidget {
 }
 
 class _OnbordingPageState extends State<OnbordingPage> {
+  PageController pageController = PageController();
+  String button='Skip';
+  int currentpage=0;
+
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Scaffold(
-      backgroundColor: bgcolor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacementNamed('/home');
-              },
-              child: Text("Skip")),
-        ],
-      ),
-      body: Stack(
-        children: [
-          PageView.builder(
-            scrollDirection: Axis.horizontal,
-            controller: pageController,
-            onPageChanged: (value) {
-              setState(() {
-                currentpage = value;
-              });
-            },
-            itemCount: onbordinglist.length,
-            itemBuilder: (context, index) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    onbordinglist[index]['image'],
-                    fit: BoxFit.cover,
-                  ),
-                  Text(
-                    '${onbordinglist[index]['title']}',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600,color: Colors.black),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    '${onbordinglist[index]['description']}',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400,color: Colors.black),
-                  ),
-                ],
-              );
-            },
-          ),
+        backgroundColor: bgcolor,
+        body: Stack(
+          children: [
+            PageView(
+              controller: pageController,
 
-          Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                (currentpage == onbordinglist.length - 1)
-                    ? ElevatedButton(onPressed: () {}, child: Text("Continue"))
-                    : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(onbordinglist.length, (index) {
-                      return AnimatedContainer(
-                        duration: Duration(milliseconds: 200),
-                        height: 10,
-                        width: (index == currentpage) ? 20 : 15,
-                        margin: EdgeInsets.symmetric(horizontal: 5),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: (index == currentpage)
-                                ? Colors.deepPurpleAccent
-                                : Colors.grey),
-                      );
-                    }))
-              ],
+              onPageChanged: (index){
+                currentpage=index;
+                setState(() {
+                  if(index==2)
+                  {
+                    button='Finish';
+                  }else{
+                    button='Skip';
+                  }
+                });
+              },
+              children: [Screen1(), Screen2(), Screen3()],
             ),
-          ),
-        ],
-      ),
-    );
+            Container(
+              alignment: Alignment(0, 0.9),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton(onPressed: () {
+                    Navigator.of(context).pushReplacementNamed('/home');
+
+                  }, child: Text("$button")),
+                  SmoothPageIndicator(controller: pageController, count: 3),
+                  (currentpage!=2)?
+                  TextButton(onPressed: () {
+                    pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                  }, child: Text("Next")):TextButton(onPressed: () {
+
+                  }, child: Text("")),
+
+                ],
+              ),
+            )
+          ],
+        ));
   }
 }

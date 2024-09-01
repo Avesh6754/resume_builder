@@ -67,7 +67,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/section');
+                      if(button=='Create')
+                        {
+                          Navigator.of(context).pushNamed('/section');
+                        }
+                      else if(button=='View')
+                        {
+                          Navigator.of(context).pushNamed('/pdf');
+                        }
+                      else if(button=='Edit')
+                        {
+                          Navigator.of(context).pushNamed('/section');
+                        }
                     },
                     child: Text("$button"))
               ],
