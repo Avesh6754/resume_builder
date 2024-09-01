@@ -53,16 +53,11 @@ Future<Uint8List> pdfGenerator() async{
               color: PdfColors.black,
             ),
             child: pw.Column(
+              mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
               mainAxisSize: pw.MainAxisSize.min,
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
-                pw.Text(
-                  'CONTACT',
-                  style: pw.TextStyle(
-                      color: PdfColors.white,
-                      fontWeight: pw.FontWeight.bold,
-                      fontSize: 20),
-                ),
+               txtpdf(name: 'Contact'),
                 pw.SizedBox(height: 5),
                 pw.Row(
                   crossAxisAlignment: pw.CrossAxisAlignment.center,
@@ -74,7 +69,6 @@ Future<Uint8List> pdfGenerator() async{
                       padding: const pw.EdgeInsets.all(9),
                       margin: const pw.EdgeInsets.only(top: 10, right: 10),
                       decoration: const pw.BoxDecoration(
-                          shape: pw.BoxShape.circle,
                           color: PdfColors.orange),
                       child: pw.Image(icon1),
                     ),
@@ -97,7 +91,6 @@ Future<Uint8List> pdfGenerator() async{
                       padding: const pw.EdgeInsets.all(9),
                       margin: const pw.EdgeInsets.only(top: 10, right: 10),
                       decoration: const pw.BoxDecoration(
-                          shape: pw.BoxShape.circle,
                           color:  PdfColors.orange),
                       child: pw.Image(icon2),
                     ),
@@ -120,7 +113,6 @@ Future<Uint8List> pdfGenerator() async{
                       padding: const pw.EdgeInsets.all(9),
                       margin: const pw.EdgeInsets.only(top: 10, right: 10),
                       decoration: const pw.BoxDecoration(
-                          shape: pw.BoxShape.circle,
                           color:  PdfColors.orange),
                       child: pw.Image(icon3),
                     ),
@@ -143,7 +135,7 @@ Future<Uint8List> pdfGenerator() async{
                       padding: const pw.EdgeInsets.all(9),
                       margin: const pw.EdgeInsets.only(top: 10, right: 10),
                       decoration: const pw.BoxDecoration(
-                          shape: pw.BoxShape.circle,
+
                           color: PdfColors.orange),
                       child: pw.Image(icon4),
                     ),
@@ -166,7 +158,6 @@ Future<Uint8List> pdfGenerator() async{
                       padding: const pw.EdgeInsets.all(9),
                       margin: const pw.EdgeInsets.only(top: 10, right: 10),
                       decoration: const pw.BoxDecoration(
-                        shape: pw.BoxShape.circle,
                         color: PdfColors.orange,
                       ),
                       child: pw.Image(icon5),
@@ -181,50 +172,34 @@ Future<Uint8List> pdfGenerator() async{
                   ],
                 ),
                 pw.SizedBox(height: 2),
-                pw.Divider(
-                  color:  PdfColors.orange,
-                  thickness: 1,
-                ),
-                pw.Text(
-                  'SKILLS',
-                  style: pw.TextStyle(
-                      color: PdfColors.white,
-                      fontWeight: pw.FontWeight.bold,
-                      fontSize: 20),
-                ),
+                txtpdf(name:'Skills'),
                 pw.SizedBox(height: 2),
                 ...List.generate(
                   skilllist.length,
-                      (index) => pw.Padding(
-                    padding: const pw.EdgeInsets.only(top: 5),
-                    child: pw.Row(
-                      mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                      children: [
-                        pw.Text(
-                          skilllist[index].text,
-                          style: const pw.TextStyle(
-                              color: PdfColors.white, fontSize: 16),
-                        ),
-                        pw.Text(
-                          '${SliderRange[index].toInt()}% ',
-                          style: const pw.TextStyle(
-                              color: PdfColors.white, fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ),
+                      (index) =>pw.Column(
+                        children: [
+                          pw.Padding(
+                            padding: const pw.EdgeInsets.only(top: 5),
+                            child: pw.Row(
+                              mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                              children: [
+                                pw.Text(
+                                  skilllist[index].text,
+                                  style: const pw.TextStyle(
+                                      color: PdfColors.white, fontSize: 16),
+                                ),
+                                pw.Text(
+                                  '${SliderRange[index].toInt()}% ',
+                                  style: const pw.TextStyle(
+                                      color: PdfColors.white, fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          )
+                        ]
+                      ),
                 ),
-                pw.Divider(
-                  color:  PdfColors.orange,
-                  thickness: 1,
-                ),
-                pw.Text(
-                  'LANGUAGE',
-                  style: pw.TextStyle(
-                      color: PdfColors.white,
-                      fontWeight: pw.FontWeight.bold,
-                      fontSize: 20),
-                ),
+                txtpdf(name:'Language'),
                 pw.SizedBox(height: 2),
                 ...List.generate(
                   languagelist.length,
@@ -237,17 +212,7 @@ Future<Uint8List> pdfGenerator() async{
                     ),
                   ),
                 ),
-                pw.Divider(
-                  color: PdfColors.orange,
-                  thickness: 1,
-                ),
-                pw.Text(
-                  'ACHIEVEMENTS',
-                  style: pw.TextStyle(
-                      color: PdfColors.white,
-                      fontWeight: pw.FontWeight.bold,
-                      fontSize: 20),
-                ),
+
                 pw.SizedBox(height: 2),
                 ...List.generate(
                   certificatelist.length,
@@ -260,17 +225,7 @@ Future<Uint8List> pdfGenerator() async{
                     ),
                   ),
                 ),
-                pw.Divider(
-                  color:  PdfColors.orange,
-                  thickness: 1,
-                ),
-                pw.Text(
-                  'STRENGTH',
-                  style: pw.TextStyle(
-                      color: PdfColors.white,
-                      fontWeight: pw.FontWeight.bold,
-                      fontSize: 20),
-                ),
+                txtpdf(name: 'Strength'),
                 pw.SizedBox(height: 2),
                 ...List.generate(
                   strengthlist.length,
@@ -283,6 +238,16 @@ Future<Uint8List> pdfGenerator() async{
                     ),
                   ),
                 ),
+                pw.SizedBox(height: 2),
+                txtpdf(name: 'Activities'),
+                ...List.generate(activitieslist.length,(index)=> pw.Padding(
+                  padding: const pw.EdgeInsets.only(top: 5),
+                  child: pw.Text(
+                    activitieslist[index].text,
+                    style: const pw.TextStyle(
+                        color: PdfColors.white, fontSize: 16),
+                  ),
+                ),)
               ],
             ),
           ),
@@ -343,76 +308,129 @@ Future<Uint8List> pdfGenerator() async{
               child: pw.Column(
                 crossAxisAlignment: pw.CrossAxisAlignment.start,
                 children: [
-                  pw.Text(
-                    'ABOUT ME ',
-                    style: pw.TextStyle(
-                        color: const PdfColor.fromInt(0xff181818),
-                        fontWeight: pw.FontWeight.bold,
-                        fontSize: 20),
-                  ),
+                  txtpdfDark(name: 'About Me'),
                   pw.SizedBox(height: 6),
                   pw.Text(
                     txtaddinfo.text,
                     style: const pw.TextStyle(
-                        color:  PdfColors.orange, fontSize: 16),
+                        color:PdfColors.black, fontSize: 16),
                   ),
                   pw.SizedBox(height: 1),
-                  pw.Divider(
-                    thickness: 2.5,
-                    color:  PdfColors.orange,
-                  ),
-                  pw.SizedBox(height: 1),
-                  pw.Text(
-                    'EDUCATION',
-                    style: pw.TextStyle(
-                        color: const PdfColor.fromInt(0xff181818),
-                        fontWeight: pw.FontWeight.bold,
-                        fontSize: 20),
+                  txtpdfDark(name: 'Education'),
+                  ...List.generate(
+                    edu.length,
+                        (index) => pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          '  ${edu[index]['school'].text}',
+                          style: pw.TextStyle(
+                              color:PdfColors.black,
+                              fontWeight: pw.FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                        pw.SizedBox(height: 1.2),
+                        pw.Text(
+                          '  ${edu[index]['degree'].text}',
+                          style: const pw.TextStyle(
+                              color: PdfColors.black,
+                              fontSize: 16),
+                        ),
+                        pw.SizedBox(height: 1.2),
+                        pw.Text(
+                          '  ${edu[index]['year'].text}',
+                          style: const pw.TextStyle(
+                              color: PdfColor.fromInt(0xff181818),
+                              fontSize: 16),
+                        ),
+                        pw.SizedBox(height: 1.2),
+                        pw.Text(
+                          '  Grade - ${edu[index]['grade'].text}',
+                          style: const pw.TextStyle(
+                              color:PdfColors.black,
+                              fontSize: 16),
+                        ),
+                      ],
+                    ),
                   ),
                   pw.SizedBox(height: 7),
 
                   pw.SizedBox(height: 1.2),
-                  pw.Divider(
-                    thickness: 2.5,
-                    color: PdfColors.orange,
+                  txtpdfDark(name: 'Experience'),
+                  ...List.generate(
+                    experiencelist.length,
+                        (index) => pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          '  ${experiencelist[index]['job'].text}',
+                          style: pw.TextStyle(
+                              color: PdfColors.black,
+                              fontWeight: pw.FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                        pw.SizedBox(height: 1.5),
+                        pw.Text(
+                          '  ${experiencelist[index]['company'].text}',
+                          style: const pw.TextStyle(
+                              color: PdfColors.black,
+                              fontSize: 16),
+                        ),
+                        pw.SizedBox(height: 1.5),
+                        (isend==false)?
+                        pw.Text(
+                          '  Start ${experiencelist[index]['start'].text} -\n   End ${experiencelist[index]['end'].text}',
+                          style: const pw.TextStyle(
+                              color: PdfColors.black,
+                              fontSize: 16),
+                        ):pw.Text(
+                          '  Start  ${experiencelist[index]['start'].text} \n  Present',
+                          style: const pw.TextStyle(
+                              color: PdfColors.black,
+                              fontSize: 16),
+                        ),
+                        pw.SizedBox(height: 1.5),
+                        pw.Text(
+                          '  ${experiencelist[index]['detail'].text}',
+                          style: const pw.TextStyle(
+                              color: PdfColors.black,
+                              fontSize: 16),
+                        ),
+                      ],
+                    ),
                   ),
-                  pw.SizedBox(height: 1.2),
-                  pw.Text(
-                    'WORK EXPERIENCE',
-                    style: pw.TextStyle(
-                        color: const PdfColor.fromInt(0xff181818),
-                        fontWeight: pw.FontWeight.bold,
-                        fontSize: 20),
-                  ),
+
                   pw.SizedBox(height: 6),
+
                   pw.SizedBox(height: 1.2),
-                  pw.Divider(
-                    thickness: 2.5,
-                    color: PdfColors.orange,
-                  ),
-                  pw.SizedBox(height: 1.2),
-                  pw.Text(
-                    'PROJECTS',
-                    style: pw.TextStyle(
-                        color: const PdfColor.fromInt(0xff181818),
-                        fontWeight: pw.FontWeight.bold,
-                        fontSize: 20),
+                  txtpdfDark(name: 'Projects'),
+                  ...List.generate(
+                    projectlist.length,
+                        (index) => pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          '  ${projectlist[index]['name'].text}',
+                          style: pw.TextStyle(
+                              color: PdfColors.black,
+                              fontWeight: pw.FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                        pw.SizedBox(height: 1.2),
+                        pw.Text(
+                          '  ${projectlist[index]['description'].text}',
+                          style: const pw.TextStyle(
+                              color: PdfColors.black,
+                              fontSize: 16),
+                        ),
+                        pw.SizedBox(height: 1.2),
+                      ],
+                    ),
                   ),
                   pw.SizedBox(height: 6),
                   // tod
                   pw.SizedBox(height: 1.2),
-                  pw.Divider(
-                    thickness: 2.5,
-                    color:  PdfColors.orange,
-                  ),
-                  pw.SizedBox(height: 1.2),
-                  pw.Text(
-                    'REFERENCE',
-                    style: pw.TextStyle(
-                        color: const PdfColor.fromInt(0xff181818),
-                        fontWeight: pw.FontWeight.bold,
-                        fontSize: 20),
-                  ),
+                  txtpdfDark(name: 'Reference'),
                   pw.SizedBox(height: 6),
                   pw.Row(
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
@@ -485,8 +503,29 @@ pw.Container txtpdf({required String name})
       "$name",
       style: pw.TextStyle(
           color: pdfwhite,
-          fontSize: 15,
-          fontWeight: pw.FontWeight.normal),
+          fontSize: 18,
+          fontWeight: pw.FontWeight.bold),
     ),
   );
 }
+
+pw.Container txtpdfDark({required String name})
+{
+  return pw.Container(
+    height: 35,
+    width: double.infinity,
+    alignment: pw.Alignment.center,
+    decoration: pw.BoxDecoration(
+      color: pdforange
+    ),
+    child: pw.Text(
+      "$name",
+      style: pw.TextStyle(
+          color: pdfwhite,
+          fontSize: 18,
+          fontWeight: pw.FontWeight.bold),
+    ),
+  );
+}
+
+

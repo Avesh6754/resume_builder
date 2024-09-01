@@ -11,6 +11,7 @@ TextFormField textfiledudf(
       return value!.isEmpty?"This deatils is mandatory":null;
     },
     maxLines: (isAddress) ? 3 : 1,
+    controller: txtController,
     keyboardType: (isphone)?TextInputType.number:TextInputType.text,
     decoration: InputDecoration(
         prefixIcon: Icon(
