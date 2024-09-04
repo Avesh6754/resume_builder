@@ -25,7 +25,7 @@ TextFormField textfiledudf(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(color: Colors.red, width: 2)),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(17),
             borderSide: BorderSide(color: Colors.deepPurple, width: 2)),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
