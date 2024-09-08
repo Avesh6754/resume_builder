@@ -86,6 +86,7 @@ class _LanguagePageState extends State<LanguagePage> {
                           ],),
                       ),
                     ),
+
                   ),
                 ),Container(height: 100,),
                 SizedBox(height: 30,)
