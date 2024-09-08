@@ -51,10 +51,14 @@ git clone https://github.com/yourusername/resume-builder.git
 cd resume-builder
 ```
 ## How to Use
-### Launch the App: Open the app on your device or emulator.
-### Create a Resume: Start by selecting a template or creating a new one. Enter your details in sections like Personal Information, Work Experience, Education, Skills, and Contact Details.
-### Customize Your Resume: Use the rich text editor to format text and apply different styles. Customize the theme and layout to fit your preferences.
-### Export Your Resume: Click the export button to generate a PDF file of your resume. Save it locally or share it via email and other apps.
+### Launch the App: 
+Open the app on your device or emulator.
+### Create a Resume:
+Start by selecting a template or creating a new one. Enter your details in sections like Personal Information, Work Experience, Education, Skills, and Contact Details.
+### Customize Your Resume:
+Use the rich text editor to format text and apply different styles. Customize the theme and layout to fit your preferences.
+### Export Your Resume:
+Click the export button to generate a PDF file of your resume. Save it locally or share it via email and other apps.
 Configuration
 ## API Keys and Environment Variables
 If your app uses any API keys or environment variables, ensure they are correctly configured in your environment settings.
