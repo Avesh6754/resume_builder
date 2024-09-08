@@ -62,21 +62,3 @@ Click the export button to generate a PDF file of your resume. Save it locally o
 Configuration
 ## API Keys and Environment Variables
 If your app uses any API keys or environment variables, ensure they are correctly configured in your environment settings.
-
-## Localization
-To add or update languages, modify the localization files located in the lib/l10n directory. Refer to the Flutter localization guide for detailed instructions.
-
-## Packages Used
-The app utilizes several Flutter and Dart packages for enhanced functionality:
-
-### provider: 
-For state management and dependency injection.
-### pdf: 
-For generating and manipulating PDF files.
-### flutter_localizations:
-For internationalization and localization support.
-### flutter_form_builder:
-For creating and managing forms with validation.
-### cached_network_image: 
-For efficient image loading and caching.
-For a complete list of dependencies, check the pubspec.yaml file.
