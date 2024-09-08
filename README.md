@@ -1,5 +1,6 @@
 
- <h1 align='center'>Resume App</h1>
+ <h1 align='center'>🔶🔸Resume App🔸🔶</h1>
+ 
 ## Resume Builder
 
 A comprehensive resume application developed using the Flutter framework and Dart language. This app allows users to create, customize, and manage their resumes with a seamless and user-friendly interface. The app supports various features such as customizable templates, PDF export, and multi-language support.
