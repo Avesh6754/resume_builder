@@ -60,5 +60,4 @@ Use the rich text editor to format text and apply different styles. Customize th
 ### Export Your Resume:
 Click the export button to generate a PDF file of your resume. Save it locally or share it via email and other apps.
 Configuration
-## API Keys and Environment Variables
-If your app uses any API keys or environment variables, ensure they are correctly configured in your environment settings.
+
