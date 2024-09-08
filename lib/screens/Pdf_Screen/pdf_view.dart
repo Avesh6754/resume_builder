@@ -38,12 +38,12 @@ Future<Uint8List> pdfGenerator() async {
   final icon3 = await imageFromAssetBundle('assets/image/icon3.png');
   final icon4 = await imageFromAssetBundle('assets/image/icon4.png');
   final icon5 = await imageFromAssetBundle('assets/image/icon5.png');
-  pdf.addPage(pw. Page(
+  pdf.addPage(pw.MultiPage(
     margin: pw.EdgeInsets.zero,
 
     pageFormat: PdfPageFormat.a4 ,
     build: (context) {
-      return pw.Stack(
+      return [ pw.Stack(
         children: [
           //---------------------------->todo black Container
           pw.Container(
@@ -495,7 +495,8 @@ Future<Uint8List> pdfGenerator() async {
             ),
           )
         ],
-      );
+      ),
+      ];
     },
   ));
   return pdf.save();
