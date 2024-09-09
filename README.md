@@ -69,8 +69,7 @@ Configuration
 
   <img src="https://github.com/user-attachments/assets/889f0990-4060-4c0c-b533-be3706338508" width="22%" Height="35%">
   <img src="https://github.com/user-attachments/assets/4187e389-61ef-430d-93e4-f3e804d34268" width="22%" Height="35%">
-   <img src="https://github.com/user-attachments/assets/912ab799-3bc6-4691-9874-8232aff5be6e" width="22%" Height="35%">
-   <img src="https://github.com/user-attachments/assets/e0fd403b-3abb-438b-a428-a3d3a73f0973" width="22%" Height="35%">
+  
   <img src="https://github.com/user-attachments/assets/c8e86268-2fc4-490a-9b94-504b4ee5a875" width="22%" Height="35%">
    
   <img src="https://github.com/user-attachments/assets/34d485e4-efa3-4075-bd85-ea826fccee36" width="22%" Height="35%">
